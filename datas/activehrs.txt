@@ -1,0 +1,56 @@
+Configuring Active Hours
+On this page
+Overview
+Configuring Active Hours
+Overview
+Active hours establish the times and days during which a teacher can start and run a class. Although teachers and site admins can login outside of the designated active hours, they cannot start a class or interact with students.
+
+Site Admins can set Active Hours for the entire organization in the Setting menu.
+
+Configuring Active Hours
+A Site Admin will need to log into LanSchool Air.
+Click on the menu at the top left and go to Settings.
+
+
+
+Select General.
+
+
+
+Under Active Hours, select Add Setting to create a new set of Active Hours and select Save at the bottom right. 
+To modify an existing set of Active Hours select the 3 dot menu and select Edit.
+
+
+
+To create or modify Active Hours, click on the 3 dots and select Edit.
+
+
+
+Edit your active hours for your organization.
+Choose a title for your active hours. 
+Select your Time Zone.
+Select the stop and start date i.e. the start and end of the school year.
+Select which days Active Hours should be active. If there are day(s) of the week that school hours end at different times unselect the day(s) and select the plus sign next to Days Active to select and add a different time for the day(s). 
+Select the stop and start time i.e. when the school days start and end.
+Add excluded days such as holidays when class cannot be started at all. 
+
+
+
+Once you have finished Editing your Active Hours select Set as Active Setting to enable Active Hours.
+
+Select Save at the bottom right. Active hours will show Active next to the 3 dot menu.
+
+
+
+To add additional Active Hours i.e. summer school hours, select Add Settings to create a New Active Hours Setting and select Save at the bottom right.
+
+
+
+Only one Active Hours setting can be active at a time.
+
+To delete Active Hours click on the 3 dot menu next to the Active Hours and select Delete. 
+
+
+
+If a teacher tries to start a class outside of the Active Hours time they will not be able to start the class and will see a Currently outside of active hours notification at the bottom of their screen.
+
