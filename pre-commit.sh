@@ -3,7 +3,6 @@
 # Define the path to your Python script
 python_script_path="test.py"
 
-# Create an empty array to store file names
 new_files_list=()
 modified_files_list=()
 
@@ -25,8 +24,9 @@ if [[ ${#new_files_list[@]} -gt 0 ]]; then
     # Prompt user for input
     read -r -p "New files detected. Do you want to continue? [y/n]: " response
     if [[ $response =~ ^[Yy]$ ]]; then
+        echo "sdds"
         # User confirmed, run the Python script
-        python "$python_script_path" "$new_files_string"
+        #python "$python_script_path" "$new_files_string"
         exit 0
     else
         # User declined, exit without running the Python script
