@@ -26,7 +26,7 @@ if [[ ${#new_files_list[@]} -gt 0 ]]; then
     read -r -p "New files detected. Do you want to continue? [y/n]: " response
     if [[ $response =~ ^[Yy]$ ]]; then
         # User confirmed, run the Python script
-        python "$python_script_path" "$new_files_string" "${modified_files_list[@]}"
+        python "$python_script_path" "$new_files_string"
         exit 0
     else
         # User declined, exit without running the Python script
