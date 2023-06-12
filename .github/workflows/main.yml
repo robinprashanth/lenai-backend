@@ -44,13 +44,7 @@ jobs:
               run: python ingestdata.py # Replace with the path to your Python script
 
             - name: Delete files
-              if: steps.run_script.outcome == 'success'
-              uses: actions/github-script@v4
+              uses: canastro/copy-file-action@master
               with:
-                  script: |
-                      const fs = require('fs');
-                      const path = require('path');
-                      const files = fs.readdirSync(path.join(process.env.GITHUB_WORKSPACE, 'newdata'));
-                      files.forEach(file => {
-                        fs.unlinkSync(path.join(process.env.GITHUB_WORKSPACE, 'newdata', file));
-                      });
+                  source: "newdata/*"
+                  target: "data/"
