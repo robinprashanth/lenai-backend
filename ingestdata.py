@@ -1,4 +1,5 @@
-from dotenv import dotenv_values
+from dotenv import load_dotenv, dotenv_values
+import os
 import sys
 from langchain.vectorstores import Pinecone
 import pinecone 
@@ -9,7 +10,7 @@ from util import move_files
 ENV_VALUES = dotenv_values('.env')
 #
 
-embeddings = OpenAIEmbeddings(openai_api_key=ENV_VALUES["OPEN_API_KEY"])
+embeddings = OpenAIEmbeddings(openai_api_key=os.getenv("OPEN_API_KEY"))
 pinecone.init(
             api_key=ENV_VALUES["PINECONE_API_KEY"],  # find at app.pinecone.io
             environment=ENV_VALUES["PINECONE_ENV"] # next to api key in console
