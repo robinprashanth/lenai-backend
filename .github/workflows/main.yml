@@ -23,7 +23,14 @@ jobs:
     - name: Set environment variables
       env:
         OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }} # Replace with the name of your secret
-      run: echo "OPEN_API_KEY=$OPEN_API_KEY" >> $GITHUB_ENV
+        PINECONE_API_KEY: ${{ secrets.PINECONE_API_KEY }} # Replace with the name of your secret
+        PINECONE_ENV: ${{ secrets.PINECONE_ENV }} # Replace with the desired value
+        PINECONE_INDEX: ${{ secrets.PINECONE_INDEX }}
+      run: |
+        echo "OPEN_API_KEY=$OPEN_API_KEY" >> $GITHUB_ENV
+        echo "PINECONE_API_KEY=$PINECONE_API_KEY" >> $GITHUB_ENV
+        echo "PINECONE_ENV=$PINECONE_ENV" >> $GITHUB_ENV
+        echo "PINECONE_INDEX=$PINECONE_INDEX" >> $GITHUB_ENV
 
     - name: Install dependencies
       run: |
