@@ -8,9 +8,9 @@ from langchain.chains import RetrievalQA
 import pinecone 
 from langchain.vectorstores import Pinecone
 from langchain.chains.question_answering import load_qa_chain
-
+from langchain.docstore.document import Document
 from services.env import ENV_VALUES
-
+from util import move_files
 class PineConeIndexer:
     def __init__(self):
         self.index_name = "langchain-demo"
@@ -36,6 +36,12 @@ class PineConeIndexer:
     def get_vector_count(self):
         indexStatus = self.pineConeIndex.describe_index_stats()
         return indexStatus["total_vector_count"]
+    
+    def getIndexStatus(self):
+        status = pinecone.describe_index(self.index_name)
+        print(status)
+        return status
+
 
     def embedDocs(self):
         if self.index_name not in pinecone.list_indexes():
@@ -49,6 +55,14 @@ class PineConeIndexer:
                 docs = self.split_docs(documents)
                 self.pushEmbeddedDocs(docs)
     
+
+    def ingest_documents(self):
+        documents = self.load_docs(ENV_VALUES["newData"])
+        docs = self.split_docs(documents)
+        self.pushEmbeddedDocs(docs)
+        move_files("newdata", "data")
+
+
     def addNewTextDoc(self, path):
         self.loader = TextLoader(path)
         doc = self.loader.load()
@@ -56,6 +70,12 @@ class PineConeIndexer:
         print (f"You have {len(doc[0].page_content)} characters in that document")
         docs = self.split_docs(doc)
         self.index.add_documents(documents=docs)
+    
+    def addPlainText(self, text):
+        doc = Document(page_content=text)
+        # docs = self.split_docs(doc)
+        # print(docs)
+        self.index.add_documents(documents=doc)
 
     def addNewPDFDoc(self, path):
         self.loader = PyPDFLoader(path)
@@ -65,8 +85,8 @@ class PineConeIndexer:
         docs = self.split_docs(doc)
         self.index.add_documents(documents=docs)
 
-    def load_docs(self):
-       loader = DirectoryLoader(ENV_VALUES["datapath"])
+    def load_docs(self, documentspath=ENV_VALUES["datapath"]):
+       loader = DirectoryLoader(documentspath)
        documents = loader.load()
        print (f"You have {len(documents)} document")
        return documents

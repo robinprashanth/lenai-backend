@@ -16,7 +16,7 @@ load_dotenv()
 # create and expose ENV_VALUES
 ENV_VALUES = dotenv_values('.env')
 ENV_VALUES["datapath"] = "data"
-ENV_VALUES["newDatas"] = "datas"
+ENV_VALUES["newData"] = "newdata"
 
 if len(list(ENV_VALUES.keys())) == 0:
     print(

@@ -19,3 +19,4 @@ pinecone-client
 jupyter
 sentence_transformers
 psycopg[binary,pool]
+python-multipart
