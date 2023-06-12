@@ -61,7 +61,7 @@ def split_docs(documents,chunk_size=1000, chunk_overlap=20):
 #             addNewPDFDoc(file)
 #             print(f"Successfully converted {file} file into embedded vectors and added to the pinecone database")
 #             print("***"*20)
-#     print("***Ingestion Complete***")
+#     print("***Ingestion Complete***")#
 # else:
 #     print("No new files found in the data folder. Skipping pinecone vector db operations.")
 
