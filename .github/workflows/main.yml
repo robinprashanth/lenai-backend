@@ -50,8 +50,8 @@ jobs:
                       const fs = require('fs');
                       const path = require('path');
 
-                      const sourceDir = path.join(process.env.GITHUB_WORKSPACE, 'source');
-                      const destinationDir = path.join(process.env.GITHUB_WORKSPACE, 'destination');
+                      const sourceDir = path.join(process.env.GITHUB_WORKSPACE, 'newdata');
+                      const destinationDir = path.join(process.env.GITHUB_WORKSPACE, 'data');
 
                       const files = fs.readdirSync(sourceDir);
                       files.forEach(file => {
