@@ -16,7 +16,6 @@ unstructured[local-inference]
 torch
 pdf2image
 pinecone-client
-jupyter
 sentence_transformers
 psycopg[binary,pool]
 python-multipart
