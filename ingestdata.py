@@ -12,11 +12,11 @@ ENV_VALUES = dotenv_values('.env')
 
 embeddings = OpenAIEmbeddings(openai_api_key=os.getenv("OPEN_API_KEY"))
 pinecone.init(
-            api_key=ENV_VALUES["PINECONE_API_KEY"],  # find at app.pinecone.io
-            environment=ENV_VALUES["PINECONE_ENV"] # next to api key in console
+            api_key=os.getenv("PINECONE_API_KEY"),  # find at app.pinecone.io
+            environment=os.getenv("PINECONE_ENV") # next to api key in console
         )
-pineConeIndex = pinecone.Index(index_name=ENV_VALUES["PINECONE_INDEX"])
-index = Pinecone.from_existing_index(index_name=ENV_VALUES["PINECONE_INDEX"], embedding=embeddings)
+pineConeIndex = pinecone.Index(index_name=os.getenv("PINECONE_INDEX"))
+index = Pinecone.from_existing_index(index_name=os.getenv("PINECONE_INDEX"), embedding=embeddings)
 
 # Get new files and modified files list
 new_files_list = sys.argv[1].split(",")
@@ -66,14 +66,14 @@ def split_docs(documents,chunk_size=1000, chunk_overlap=20):
 # else:
 #     print("No new files found in the data folder. Skipping pinecone vector db operations.")
 
-def load_docs(documentspath=ENV_VALUES["datapath"]):
+def load_docs(documentspath):
        loader = DirectoryLoader(documentspath)
        documents = loader.load()
        print (f"You have {len(documents)} document")
        return documents
 
 if len(new_files_list) > 0:
-    documents = load_docs(ENV_VALUES["newData"])
+    documents = load_docs("newData")
     docs = split_docs(documents)
-    Pinecone.from_documents(docs, embeddings, index_name=ENV_VALUES["PINECONE_INDEX"])
+    Pinecone.from_documents(docs, embeddings, index_name=os.getenv("PINECONE_INDEX"))
     move_files("newdata", "data")
