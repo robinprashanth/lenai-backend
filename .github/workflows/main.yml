@@ -2,10 +2,8 @@ name: Check for new files
 
 on:
     push:
-        branches:
-            - master
-        paths:
-            - "newdata/**"
+        branches: [master]
+        paths: ["newdata/**"]
 
 jobs:
     check_files:
