@@ -15,7 +15,7 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
               with:
-                fetch-depth: 0
+                  fetch-depth: 0
 
             - name: Set up Python
               uses: actions/setup-python@v2
@@ -44,5 +44,13 @@ jobs:
               run: python ingestdata.py # Replace with the path to your Python script
 
             - name: Delete files
-              run: |
-                  rm -rf $GITHUB_WORKSPACE/newdata/*
+              if: steps.run_script.outcome == 'success'
+              uses: actions/github-script@v4
+              with:
+                  script: |
+                      const fs = require('fs');
+                      const path = require('path');
+                      const files = fs.readdirSync(path.join(process.env.GITHUB_WORKSPACE, 'newdata'));
+                      files.forEach(file => {
+                        fs.unlinkSync(path.join(process.env.GITHUB_WORKSPACE, 'newdata', file));
+                      });
