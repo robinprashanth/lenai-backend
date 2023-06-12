@@ -44,7 +44,7 @@ def load_docs(documentspath):
        return documents
 
 def ingets_data():
-    documents = load_docs("newData")
+    documents = load_docs("newdata")
     docs = split_docs(documents)
     Pinecone.from_documents(docs, embeddings, index_name=os.getenv("PINECONE_INDEX"))
     move_files("newdata", "data")
