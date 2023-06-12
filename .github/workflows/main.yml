@@ -42,6 +42,5 @@ jobs:
               run: python ingestdata.py # Replace with the path to your Python script
 
             - name: Delete files
-              if: steps.run_script.outcome == 'success'
               run: |
                   rm -rf $GITHUB_WORKSPACE/newdata/*
