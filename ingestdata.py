@@ -7,6 +7,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
 from util import move_files
 ENV_VALUES = dotenv_values('.env')
+#
 
 embeddings = OpenAIEmbeddings(openai_api_key=ENV_VALUES["OPEN_API_KEY"])
 pinecone.init(
