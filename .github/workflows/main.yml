@@ -1,33 +1,35 @@
 name: Check for new files
 
 on:
-    push:
-        branches:
-            - master
-        paths:
-            - "newdata/**"
+  push:
+    branches:
+      - master
+    paths:
+      - 'newdata/**'
 
 jobs:
-    check_files:
-        runs-on: ubuntu-latest
+  check_files:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-            - name: Set up Python
-              uses: actions/setup-python@v2
-              with:
-                  python-version: "3.8" # Replace with your desired Python version
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8' # Replace with your desired Python version
 
-            - name: Install dependencies
-              run: pip install -r requirements.txt # Replace with your project's dependency installation command if needed
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt # Replace with your project's dependency installation command if needed
 
-            - name: Run Python script
-              id: run_script
-              run: python ingestdata.py # Replace with the path to your Python script
+    - name: Run Python script
+      id: run_script
+      run: python ingestdata.py # Replace with the path to your Python script
 
-            - name: Delete files
-              if: steps.run_script.outcome == 'success'
-              run: |
-                  rm -rf newdata/*
+    - name: Delete files
+      if: steps.run_script.outcome == 'success'
+      run: |
+        rm -rf $GITHUB_WORKSPACE/newdata/*
