@@ -1,6 +1,5 @@
 from dotenv import dotenv_values
 import sys
-import os
 from langchain.vectorstores import Pinecone
 import pinecone 
 from langchain.document_loaders import DirectoryLoader, TextLoader, PyPDFLoader
