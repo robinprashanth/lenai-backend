@@ -44,20 +44,5 @@ jobs:
               run: python ingestdata.py # Replace with the path to your Python script
 
             - name: Move files
-              uses: actions/github-script@v4
-              with:
-                  script: |
-                      const fs = require('fs');
-                      const path = require('path');
-
-                      const sourceDir = path.join(process.env.GITHUB_WORKSPACE, 'newdata');
-                      const destinationDir = path.join(process.env.GITHUB_WORKSPACE, 'data');
-
-                      const files = fs.readdirSync(sourceDir);
-                      files.forEach(file => {
-                        const sourcePath = path.join(sourceDir, file);
-                        const destinationPath = path.join(destinationDir, file);
-                        fs.renameSync(sourcePath, destinationPath);
-                      });
-
-                      console.log(`All files moved successfully from 'source' to 'destination'.`);
+              run: |
+                  python -c 'import shutil; import os; shutil.move("newdata", "data")'
